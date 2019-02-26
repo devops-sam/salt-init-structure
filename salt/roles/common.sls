@@ -1,0 +1,3 @@
+include:
+  #- salt-minion
+  - base

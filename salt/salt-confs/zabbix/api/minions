@@ -1,0 +1,17 @@
+IP: {{IP}}
+Hostgroup:
+  {% if Hostgroup ==  'None' %}
+  {% else %}
+  {% for each_hostgroup in Hostgroup %}
+  - {{each_hostgroup}}
+  {% endfor %}
+  {% endif %}
+Templates:
+  {% for each_template in pillar.get('zabbix-base-templates', []) %}
+  - {{ each_template }}
+  {% endfor %}
+  {% for each_role in Roles %}
+  {% if each_role in Templates %}
+  - {{ pillar['zabbix-templates'][each_role] }}
+  {% endif %}
+  {% endfor %}

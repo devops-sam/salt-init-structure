@@ -1,0 +1,7 @@
+Monitors_DIR: {{pillar['zabbix-api']['Monitors_DIR']}}
+Templates_DIR: {{pillar['zabbix-api']['Templates_DIR']}}
+Zabbix_URL: {{pillar['zabbix-api']['Zabbix_URL']}}
+Zabbix_User: {{pillar['zabbix-api']['Zabbix_User']}}
+Zabbix_Pass: {{pillar['zabbix-api']['Zabbix_Pass']}}
+Zabbix_Donot_Unlink_Template:
+  - 'Template OS Linux'

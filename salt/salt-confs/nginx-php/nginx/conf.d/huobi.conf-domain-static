@@ -1,0 +1,28 @@
+{% set dir = salt['pillar.get']('vhostsdir', '/var/www/html') -%}
+{% set logdir = salt['pillar.get']('logdir', '/var/log/nginx') -%}
+server {
+        listen 8080;
+        server_name static.huobi.com;
+        root {{dir}}/static;
+        access_log {{logdir}}/static.huobi.log  main;
+
+        location / {
+            index index.php index.html index.htm;
+            try_files $uri $uri/ /index.php?$args;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        location ~* .*\.(gif|jpg|jpeg|png|bmp|swf|flv)$
+        {
+                expires      365d;
+        }
+
+        location ~* .*\.(js|css|html|htm|shtml)$
+        {
+                expires      1h;
+        }
+}
